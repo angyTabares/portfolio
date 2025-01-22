@@ -1,0 +1,103 @@
+<header id="main-header" class="fixed top-0 z-10 w-full mx-auto mt-2">
+  <nav
+    id="main-nav"
+    class="flex px-3 text-sm font-medium text-white-600 dark:text-white-200 justify-center items-center transition-all duration-300"
+  >
+    <a
+      class="relative block px-2 py-2 transition hover:text-fuchsia-500 dark:hover:text-fuchsia-500"
+      href="/#experience"
+      aria-label="experience">Work Experience</a
+    >
+    <a
+      class="relative block px-2 py-2 transition hover:text-fuchsia-500 dark:hover:text-fuchsia-500"
+      href="/#projects"
+      aria-label="projects">Projects</a
+    >
+    <a
+      class="relative block px-2 py-2 transition hover:text-fuchsia-500 dark:hover:text-fuchsia-500"
+      href="/#about"
+      aria-label="about">About</a
+    >
+    <a
+      class="relative block px-2 py-2 transition hover:text-fuchsia-500 dark:hover:text-fuchsia-500"
+      href="mailto:angy.paolatabaresgmail.com"
+      aria-label="contact">Contact</a
+    >
+  </nav>
+</header>
+
+<style>
+  /* El header siempre ocupa el ancho completo */
+  #main-header {
+    background-color: transparent;
+  }
+
+  /* Estilo inicial del nav */
+  #main-nav {
+    background-color: transparent;
+    border-radius: 5rem; /* Sin redondeo inicialmente */
+    max-width: fit-content; /* Ajusta al contenido del nav */
+    margin: 0 auto; /* Centra el nav */
+    padding: 0.1rem 0.5rem;
+  }
+
+  /* Cuando se hace scroll */
+  #main-header.scrolled #main-nav {
+    background-color: rgb(61, 68, 77); /* Fondo oscuro */
+    border-radius: 5rem; /* Redondeo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+    padding: 0.1rem 0.5rem; /* Nav más delgado */
+  }
+  /* Enlace activo */
+  .active-nav-link {
+    color: rgb(217 70 239 / var(--tw-text-opacity, 1));
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("main-header");
+    const navLinks = document.querySelectorAll("#main-nav a");
+    const sections = document.querySelectorAll("section[id]");
+
+    const handleScroll = () => {
+      let currentSectionId: any = null;
+
+      // Determinar la sección visible
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (
+          rect.top < window.innerHeight * 0.6 && // Parte superior visible
+          rect.bottom > window.innerHeight * 0.4 // Parte inferior visible
+        ) {
+          currentSectionId = section.id; // Guardamos el id de la sección visible
+        }
+      });
+
+      // Actualizar los enlaces del navbar
+      navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href === `/#${currentSectionId}`) {
+          link.classList.add("active-nav-link");
+        } else {
+          link.classList.remove("active-nav-link");
+        }
+      });
+    };
+
+    // Cambiar el estilo del header al hacer scroll
+    document.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
+
+      handleScroll();
+    });
+
+    // Ejecutar inicialmente
+    handleScroll();
+  });
+</script>

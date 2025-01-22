@@ -1,11 +1,100 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import AboutMe from "../components/AboutMe.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import SocialPill from "../components/SocialPill.astro";
+import About from "../icons/About.astro";
+import Briefcase from "../icons/Briefcase.astro";
+import Code from "../icons/Code.astro";
+import Github from "../icons/Github.astro";
+import Linkendin from "../icons/Linkendin.astro";
+import Mail from "../icons/Mail.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <div class="max-w-xl">
+        <div class="flex gap-4 mb-4">
+          <img
+            class="rounded-full size-16"
+            src="/portfolio.jpg"
+            alt="Angy Photo"
+          />
+          <div class="flex items-center">
+            <span
+              class="relative inline-flex overflow-hidden rounded-full p-[1px]"
+            >
+              <span
+                class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F0ABFC_0%,#BE185D_50%,#F0ABFC_100%)]"
+              >
+              </span>
+              <div
+                class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-white bg-blue-950 rounded-full dark:bg-slate-950 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+              >
+                Armenia, Colombia
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <h1
+          class="text-white dark:text-fuchsia-500 text-3xl md:text-4xl lg:text-5xl font-bold pb-4"
+        >
+          Angy Tabares
+        </h1>
+        <p class="text-xl lg:text-2xl text-wrap max-[700px]">
+          Software Engineer and Web Developer
+        </p>
+
+        <nav class="flex gap-4 mt-8 flex-wrap">
+          <SocialPill
+            href="https://www.linkedin.com/in/angy-paola-tabares-acevedo-66341a232/"
+          >
+            <Linkendin class="size-4 md:size-6" />
+            LinkendIn
+          </SocialPill>
+          <SocialPill href="https://github.com/angyTabares">
+            <Github class="size-4 md:size-6" />
+            Github
+          </SocialPill>
+          <SocialPill href="mailto:angy.paolatabares@gmail.com">
+            <Mail class="size-4 md:size-6" />
+            angy.paolatabares@gmail.com
+          </SocialPill>
+        </nav>
+      </div>
+    </SectionContainer>
+
+    <div class="space-y-24">
+      <SectionContainer id="experience">
+        <h2 class="flex items-center mb-6 text-3xl font-semibold gap-x-3">
+          <Briefcase class="size-7" />
+          Work Experience
+        </h2>
+        <Experience />
+      </SectionContainer>
+
+      <SectionContainer id="projects">
+        <h2 class="flex items-center text-3xl font-semibold mb-6 gap-x-3">
+          <Code class="size-7" />
+          Projects
+        </h2>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="about">
+        <h2 class="flex items-center text-3xl font-semibold mb-6 gap-x-3">
+          <About class="size-7" />
+          About
+        </h2>
+        <AboutMe />
+      </SectionContainer>
+    </div>
+  </main>
 </Layout>
