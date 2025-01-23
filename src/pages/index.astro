@@ -18,56 +18,77 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-      <div class="max-w-xl">
-        <div class="flex gap-4 mb-4">
-          <img
-            class="rounded-full size-16"
-            src="/portfolio.jpg"
-            alt="Angy Photo"
-          />
-          <div class="flex items-center">
-            <span
-              class="relative inline-flex overflow-hidden rounded-full p-[1px]"
+    <SectionContainer class="relative py-16 md:py-36">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
+      >
+        <!-- Columna Izquierda -->
+        <div class="flex flex-col items-center md:items-start">
+          <div class="relative">
+            <img
+              class="rounded-full w-40 h-40 border-4 border-fuchsia-500 shadow-lg"
+              src="/portfolio.jpg"
+              alt="Angy Photo"
+            />
+            <div
+              class="absolute -bottom-3 right-0 inline-flex overflow-hidden rounded-full p-[1px] bg-gradient-to-r from-fuchsia-500 via-pink-500 to-purple-600"
             >
               <span
-                class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F0ABFC_0%,#BE185D_50%,#F0ABFC_100%)]"
-              >
-              </span>
-              <div
-                class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-white bg-blue-950 rounded-full dark:bg-slate-950 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+                class="inline-flex items-center justify-center px-3 py-1 text-sm text-white bg-blue-950 rounded-full dark:bg-slate-950 backdrop-blur-3xl"
               >
                 Armenia, Colombia
-              </div>
-            </span>
+              </span>
+            </div>
           </div>
+          <h1
+            class="text-white dark:text-white text-4xl md:text-5xl font-extrabold mt-6"
+          >
+            Angy Tabares
+          </h1>
+          <p class="text-fuchsia-500 text-xl lg:text-2xl mt-2">
+            Software Engineer & Web Developer
+          </p>
         </div>
 
-        <h1
-          class="text-white dark:text-fuchsia-500 text-3xl md:text-4xl lg:text-5xl font-bold pb-4"
+        <!-- Columna Derecha -->
+        <div
+          class="flex flex-col items-center md:items-start text-center md:text-left"
         >
-          Angy Tabares
-        </h1>
-        <p class="text-xl lg:text-2xl text-wrap max-[700px]">
-          Software Engineer and Web Developer
-        </p>
+          <p class="text-white/80 text-lg leading-relaxed mb-6">
+            Web developer with more than a year of experience in React,
+            JavaScript and other modern technologies. Dedicated to building
+            functional, user-friendly web applications
+          </p>
+          <nav class="flex flex-wrap gap-4">
+            <SocialPill
+              href="https://www.linkedin.com/in/angy-paola-tabares-acevedo-66341a232/"
+            >
+              <Linkendin class="size-5 md:size-6" />
+              LinkedIn
+            </SocialPill>
+            <SocialPill href="https://github.com/angyTabares">
+              <Github class="size-5 md:size-6" />
+              GitHub
+            </SocialPill>
+            <SocialPill href="mailto:angy.paolatabares@gmail.com">
+              <Mail class="size-5 md:size-6" />
+              Contact
+            </SocialPill>
+          </nav>
+        </div>
+      </div>
 
-        <nav class="flex flex-wrap gap-4 mt-8">
-          <SocialPill
-            href="https://www.linkedin.com/in/angy-paola-tabares-acevedo-66341a232/"
-          >
-            <Linkendin class="size-4 md:size-6" />
-            LinkendIn
-          </SocialPill>
-          <SocialPill href="https://github.com/angyTabares">
-            <Github class="size-4 md:size-6" />
-            Github
-          </SocialPill>
-          <SocialPill href="mailto:angy.paolatabares@gmail.com">
-            <Mail class="size-4 md:size-6" />
-            Contacto
-          </SocialPill>
-        </nav>
+      <!-- Elementos Decorativos -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute w-96 h-96 bg-gradient-to-tr from-pink-500 to-purple-600 opacity-30 rounded-full blur-3xl -top-20 -right-20 hidden sm:block"
+        >
+        </div>
+
+        <div
+          class="absolute w-72 h-72 bg-gradient-to-br from-fuchsia-400 to-blue-500 opacity-10 rounded-full blur-2xl top-40 -left-20"
+        >
+        </div>
       </div>
     </SectionContainer>
 
