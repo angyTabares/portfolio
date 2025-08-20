@@ -40,7 +40,7 @@ import "@fontsource-variable/onest";
   }
   .bg-stars::before {
     content: "";
-    position: fixed; /* 👈 CAMBIO para que el fondo quede fijo */
+    position: fixed;
     top: 0;
     left: 0;
     width: 200%;
@@ -49,7 +49,7 @@ import "@fontsource-variable/onest";
       url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
     animation: moveStars 120s linear infinite;
     opacity: 0.3;
-    z-index: -1; /* 👈 Para que no tape el contenido */
+    z-index: -1;
   }
 
   @keyframes moveStars {
