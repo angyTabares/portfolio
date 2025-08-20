@@ -14,9 +14,11 @@ import "@fontsource-variable/onest";
     <meta name="generator" content={Astro.generator} />
     <title>Portafolio de Angy Tabares</title>
   </head>
-  <body class="relative h-full w-full bg-slate-950">
+  <body class="bg-stars text-white min-h-screen flex flex-col">
     <Header />
-    <slot />
+    <main class="flex-1">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
@@ -29,16 +31,33 @@ import "@fontsource-variable/onest";
     font-family: "Onest", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
-  body {
-    display: flex;
-    flex-direction: column;
+
+  /* Fondo animado con estrellas */
+  .bg-stars {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     min-height: 100vh;
-    margin: 0;
+    position: relative;
+  }
+  .bg-stars::before {
+    content: "";
+    position: fixed; /* 👈 CAMBIO para que el fondo quede fijo */
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent
+      url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+    animation: moveStars 120s linear infinite;
+    opacity: 0.3;
+    z-index: -1; /* 👈 Para que no tape el contenido */
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
+  @keyframes moveStars {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-1000px);
     }
   }
 </style>
