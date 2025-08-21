@@ -1,31 +1,54 @@
 <article
-  class="relative flex flex-col items-center justify-center gap-8 text-white-700 dark:text-gray-300 md:flex-row"
+  class="relative flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 px-6 py-12 bg-gradient-to-br from-gray-500/30 to-gray-700/30 rounded-3xl shadow-lg overflow-hidden"
 >
-  <div class="text-balance order-2 md:order-1 text-center md:text-left">
+  <!-- Contenido de texto -->
+  <div class="order-2 md:order-1 max-w-xl text-center md:text-left">
     <h4
-      class="text-2xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2"
+      class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-4"
     >
-      Hello! I'm Angy Paola Tabares Acevedo
+      <span class="text-blue-500">👋 Hello!</span>
     </h4>
-    <p class="text-lg md:text-xl text-gray-800 dark:text-gray-300 mb-2">
-      A Software Engineer from the University of Quindío, based in Armenia,
-      Colombia, my professional experience spans diverse technologies, including
-      React, JavaScript, Next.js, Node.js, Express.js, NestJs and Java.
+    <p
+      class="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-6"
+    >
+      My goal is to craft modern web applications that feel intuitive, fast, and
+      meaningful. To achieve this, I work with technologies like <span
+        class="text-fuchsia-500"
+        >JavaScript, React, Next.js, Node.js, Express, NestJS, and Java</span
+      >
+      to build solid foundations on both frontend and backend. For databases, I’ve
+      worked with <span class="text-blue-400"
+        >MySQL, MongoDB, Oracle, Firestore</span
+      >, adapting the choice depending on the project’s needs. I also enjoy
+      shaping clean interfaces with libraries such as <span
+        class="text-fuchsia-500">Material UI , Tailwind and Bootstrap</span
+      >, always looking for the right balance between usability and design. More
+      than just coding, I aim to create technology that grows alongside people
+      and their ideas.
     </p>
   </div>
 
-  <img
-    width="100"
-    height="100"
-    src="portfolio.jpg"
-    alt="Angy Tabares photo"
-    class="order-1 object-cover w-64 h-64 p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 transform hover:scale-110 transition-all duration-300 ease-in-out"
-    style="object-position: 50% 50%"
-  />
+  <!-- Imagen de perfil -->
+  <div class="order-1 md:order-2 relative group">
+    <img
+      src="portfolio.jpg"
+      alt="Angy Tabares photo"
+      class="object-cover w-64 h-64 lg:w-75 lg:h-65 aspect-square rounded-3xl ring-4 ring-white shadow-2xl transform transition duration-500 group-hover:scale-105 group-hover:rotate-2"
+      style="object-position: 50% 50%"
+    />
 
+    <div class="absolute -inset-2 rounded-3xl opacity-20 bg-slate-500 blur-2xl">
+    </div>
+  </div>
+
+  <!-- Fondo decorativo -->
   <div class="absolute inset-0 pointer-events-none">
     <div
-      class="absolute w-96 h-96 bg-gradient-to-tr from-pink-500 to-purple-600 opacity-30 rounded-full blur-3xl -top-20 -right-20 hidden sm:block"
+      class="absolute w-96 h-96 bg-gradient-to-tr from-pink-400 to-purple-600 opacity-30 rounded-full blur-3xl -top-24 -right-24 hidden lg:block"
+    >
+    </div>
+    <div
+      class="absolute w-80 h-80 bg-gradient-to-br from-blue-400 to-cyan-500 opacity-20 rounded-full blur-3xl -bottom-20 -left-20 hidden lg:block"
     >
     </div>
   </div>
