@@ -1,7 +1,24 @@
 ---
 import Link from "../icons/Link.astro";
 
+
 const PROJECTS = [
+    {
+    title: "Oliva",
+    description:
+      "Oliva is a web application where users can discover or strengthen their relationship with God through writings, reflections, and Bible verses in an accessible way. The app also includes an admin panel with CRUD functionality to the different sections.",
+    link: "https://oliva-de-vida.web.app/",
+    image: "/projectsImages/oliva.webp",
+    tags: ["REACT", "JAVASCRIPT", "FIREBASE","TAILWIND"],
+  },
+  {
+    title: "Calendar",
+    description:
+      "Web application built with the MERN stack designed to help organize activities in a simple and efficient way, providing an intuitive and real-time experience within an interactive calendar.",
+    link: "https://calendarappc.netlify.app/",
+    image: "/projectsImages/calendar.webp",
+    tags: ["REACT", "EXPRESS.JS", "NODE.JS","MONGODB"],
+  },
   {
     title: "Huellitas",
     description:
@@ -35,58 +52,342 @@ const PROJECTS = [
     tags: ["JAVASCRIPT", "FIREBASE"],
   },
 ];
+
+const totalCards = PROJECTS.length;
 ---
 
-<div class="flex flex-col gap-y-16">
-  {PROJECTS.map(({ image, title, description, tags, link }, index) => (
-    <article
-      class={`flex flex-col space-y-8 md:space-y-0 md:flex-row ${
-        index % 2 === 0 ? "md:flex-row-reverse" : ""
-      } group gap-8`}
+<style>
+  .projects-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 3rem;
+  }
+  
+  .projects-row {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 1.5rem;
+  }
+  
+  .project-card {
+    flex: 0 0 calc(50% - 0.75rem);
+    background: linear-gradient(to right, rgba(240, 171, 252, 0.1), rgba(192, 132, 252, 0.3));
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .project-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-image {
+    position: relative;
+    height: 12rem;
+    overflow: hidden;
+  }
+  
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+  
+  .project-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  
+  .project-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-tag {
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    background-color: rgb(121, 117, 165);
+    color: white;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .project-description {
+    font-size: 0.875rem;
+    color: rgba(254, 254, 255, 0.8);
+    line-height: 1.5;
+  }
+  
+  .project-link {
+    margin-top: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #d946ef;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .project-link:hover {
+    background-color: #c026d3;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: #d946ef;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .carousel-button:hover {
+    background-color: #c026d3;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .carousel-button.disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-button.disabled:hover {
+    background-color: #9ca3af;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-button.prev {
+    left: 0.5rem;
+  }
+  
+  .carousel-button.next {
+    right: 0.5rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .projects-container {
+      padding: 0 2.5rem;
+    }
+    
+    .project-card {
+      flex: 0 0 100%;
+    }
+    
+    .carousel-button {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    
+    .carousel-button.prev {
+      left: 0.25rem;
+    }
+    
+    .carousel-button.next {
+      right: 0.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-container {
+      padding: 0 2rem;
+    }
+    
+    .carousel-button {
+      width: 2rem;
+      height: 2rem;
+      padding: 0.5rem;
+    }
+  }
+</style>
+
+
+  <div class="projects-container" data-total-cards={totalCards}>
+    <!-- Botón Izquierdo -->
+    <button 
+      class="carousel-button prev disabled"
+      id="prevButton"
+      aria-label="Previous projects"
     >
-      <!-- Imagen del proyecto -->
-      <div class="w-full md:w-1/2">
-        <div class="h-full relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-          <img
-            class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-            src={image}
-            alt="Project screenshot"
-          />
-        </div>
-      </div>
-
-      <!-- Texto del proyecto -->
-      <div class="w-full md:w-1/2 md:max-w-lg">
-        <h3 class="text-2xl font-bold text-fuchsia-500 mb-2">{title}</h3>
-        <div class="flex flex-wrap mt-2">
-          <ul class="flex flex-row mb-2 gap-x-2">
-            {tags.map((tag) => (
-              <li>
-                <span class="flex gap-x-2 rounded-full text-xs bg-purple-200 text-gray-800 py-1 px-2">
-                  {tag}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div class="mt-2 text-sky-200/55">{description}</div>
-
-          {link && link !== "" && (
-            <footer class="flex items-end justify-start mt-4">
+      ‹
+    </button>
+    
+    <!-- Contenedor de tarjetas -->
+    <div class="projects-row" id="projectsRow">
+      {PROJECTS.map(({ image, title, description, tags, link }) => (
+        <article class="project-card">
+          <!-- Imagen -->
+          <div class="project-image">
+            <img
+              src={image}
+              alt={`Screenshot of ${title} project`}
+            />
+          </div>
+          
+          <!-- Contenido -->
+          <div class="project-content">
+            <div>
+              <h3 class="project-title">{title}</h3>
+              <ul class="project-tags">
+                {tags.map((tag) => (
+                  <li>
+                    <span class="project-tag">
+                      {tag}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p class="project-description">{description}</p>
+            </div>
+            
+            {link && (
               <a
                 target="_blank"
                 href={link}
-                role="link"
-                class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-1 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-white hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+                class="project-link"
               >
                 <Link />
                 Preview
               </a>
-            </footer>
-          )}
-        </div>
-      </div>
-    </article>
-  ))}
-</div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <!-- Botón Derecho -->
+    <button 
+      class="carousel-button next"
+      id="nextButton"
+      aria-label="Next projects"
+    >
+      ›
+    </button>
+  </div>
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Obtener elementos del DOM con verificaciones de null
+    const projectsContainer = document.querySelector('.projects-container');
+    const projectsRow = document.getElementById('projectsRow');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    
+    if (!projectsContainer || !projectsRow || !prevButton || !nextButton) {
+      console.error('No se pudieron encontrar todos los elementos necesarios para el carrusel');
+      return;
+    }
+    
+    const totalCards = parseInt(projectsContainer.getAttribute('data-total-cards') || '4');
+    const visibleCards = window.innerWidth <= 768 ? 1 : 2;
+    let currentIndex = 0;
+    
+    // Calcular el número máximo de índices
+    const maxIndex = Math.ceil(totalCards / visibleCards) - 1;
+    
+    // Función para actualizar el carrusel
+    function updateCarousel() {
+      const firstCard = document.querySelector('.project-card');
+      if (!firstCard) return;
+      
+      // Calcular el desplazamiento usando getBoundingClientRect()
+      const cardRect = firstCard.getBoundingClientRect();
+      const gap = 24;
+      const cardWidth = cardRect.width + gap;
+      
+      // Calcular el desplazamiento
+      const translateX = -currentIndex * cardWidth * visibleCards;
+      if(projectsRow)
+      projectsRow.style.transform = `translateX(${translateX}px)`;
+      
+      // Actualizar estado de botones usando classList en lugar de la propiedad disabled
+      if (currentIndex === 0) {
+        prevButton?.classList.add('disabled');
+      } else {
+        prevButton?.classList.remove('disabled');
+      }
+      
+      if (currentIndex >= maxIndex) {
+        nextButton?.classList.add('disabled');
+      } else {
+        nextButton?.classList.remove('disabled');
+      }
+    }
+    
+    // Event listeners para los botones 
+    prevButton.addEventListener('click', () => {
+      if (!prevButton.classList.contains('disabled') && currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+    
+    nextButton.addEventListener('click', () => {
+      if (!nextButton.classList.contains('disabled') && currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+    
+    // Inicializar el carrusel
+    updateCarousel();
+    
+    // Ajustar en redimensionamiento de ventana
+    let resizeTimeout:any;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Recalcular visibleCards basado en el nuevo tamaño de pantalla
+        const newVisibleCards = window.innerWidth <= 768 ? 1 : 2;
+        const newMaxIndex = Math.ceil(totalCards / newVisibleCards) - 1;
+        
+        // Ajustar currentIndex si es necesario
+        if (currentIndex > newMaxIndex) {
+          currentIndex = newMaxIndex;
+        }
+        
+        updateCarousel();
+      }, 250);
+    });
+  });
+</script>
